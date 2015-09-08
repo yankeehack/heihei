@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ _('Sign In') }}</title>
+    <link href='http://fonts.googleapis.com/css?family=Port+Lligat+Slab' rel='stylesheet' type='text/css'>    
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body class="sign">
+<div id="wrapper">
+    <div id="logo">
+        <span class="logo">Yankee</span>
+        <div class="subtitle">Online Judge System</div>
+    </div>
+<div class="signform">
+{% if error %}
+    <div class="alert alert-error">
+        <a class="close" data-dismiss="alert" href="#">&times;</a>
+        <ul>
+            {% for err in error %}
+            <li>{{ err }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+    <form class="form-inline" method="POST" action="">{% csrf_token %}
+        {% for field in form %}
+            <div class="input-prepend">
+                {{ field.errors }}
+                <span class="add-on"><i class="icon-user"></i></span>
+                {{ field }}
+            </div>
+        {% endfor %}
+        <div class="input-prepend">
+            <button type="submit" class="btn btn-info">{{ _('Sign In') }}</button>
+        </div>
+    </form>
+    <div class="input-prepend">
+        <a href="/oj/signup" class="btn">{{ _('Sign Up') }}</a>
+    </div>
+</div>
+
+</div>
+</body>
+</html>
