@@ -3,6 +3,8 @@ from oj.base.mixins import htmlMixin, userMixin
 from django.views import generic
 from oj.models import Member
 from oj.base import unauthenticated
+import logging
+
 
 
 

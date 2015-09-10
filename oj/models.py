@@ -5,7 +5,8 @@ from datetime import datetime
 
 class Problem(object):
     ''' COUNT '''
-    __tablename__ = "problem"
+    def __str__(self):
+        return "problem" + str(self.id)
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     shortname = models.CharField(max_length=200)
@@ -15,6 +16,28 @@ class Problem(object):
     testpoint = models.IntegerField(default=0)
     invisible = models.BooleanField(default=False)
     create = models.TimeField
+
+
+class Submit(object):
+    def __str__(self):
+        return "submit" + str(self.id)
+    id = models.AutoField(primary_key=True)
+    problem = models.ForeignKey(Problem)
+    member = models.ForeignKey(Member)
+    code = models.CharField(default="", max_length=200)
+    status = models.IntegerField(default=0)
+    testpoint = models.CharField(default="", max_length=200)
+    testpoint_time = models.CharField(default="", max_length=200)
+    testpoint_memory = models.CharField(default="", max_length=200)
+    score = models.IntegerField(default=0)
+    costtime = models.IntegerField(default=0)
+    costmemory = models.IntegerField(default=0)
+    timestamp = models.CharField(default="", max_length=200)
+    lang = models.IntegerField(default=0)
+    msg = models.CharField(default="", max_length=200)
+    user_agent = models.CharField(default="", max_length=200)
+    ip = models.CharField(default="", max_length=200)
+    create = models.DateTimeField(default=datetime.now, )
 
 
 class Question(models.Model):

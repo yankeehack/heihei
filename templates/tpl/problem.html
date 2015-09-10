@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% from 'macros.html' import form_actions %}
-{% from "macros.html" import show_error_list %}
+{% load tags %}
 
 {% block body %}
 {% if problem.invisible %}
@@ -8,7 +7,7 @@
     {{ _('This Problem is Invisible!') }}
 </div>
 {% endif %}
-{{ show_error_list(error) }}
+{% show_error_list(error) %}
 <div class="cell signleproblem">
     <div class="title">
         {% if user.admin %}
@@ -46,15 +45,15 @@
         </table>
     </div>
     <div class="body content">
-        {{ problem.content | autolink | replace('\n', '<br />') }}
+        {{ problem.content | urlize | linebreaks }}
     </div>
 </div>
 {% if user %}
 <form enctype="multipart/form-data" action="" method="POST" class="form-horizontal cell">
+    {% csrf_token %}
     <fieldset>
         <div class="title">{{ _('Submit Problem') }}</div>
         <div class="sep30"></div>
-        {{ page.xsrf_form_html() }}
         <div class="control-group">
             <label class="control-label" for="codefile">{{ _('Code File') }}</label>
             <div class="controls">

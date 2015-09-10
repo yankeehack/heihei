@@ -1,0 +1,1 @@
+celery -A oj worker --app=oj.celery.celeryconfig:app --loglevel=info

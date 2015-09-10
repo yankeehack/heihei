@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 from oj.base.baseViews import EntryView
 from oj.base.mixins import userMixin
-from oj.forms import SignupForm, SigninForm
+from oj.forms.signForms import SignupForm, SigninForm
 # Create your views here.
 
 
